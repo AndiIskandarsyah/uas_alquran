@@ -55,6 +55,7 @@ flutter:
   assets:
     - assets/background.jpg
     - assets/quran.png
+    - assets/Quran.json
 
 
   # The following line ensures that the Material Icons font is
