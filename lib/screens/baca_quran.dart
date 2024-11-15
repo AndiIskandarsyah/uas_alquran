@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'pencarian.dart';
 
 class BacaQuranPage extends StatefulWidget {
   const BacaQuranPage({super.key});
@@ -11,7 +12,9 @@ class BacaQuranPage extends StatefulWidget {
 }
 
 class _BacaQuranPageState extends State<BacaQuranPage> {
-  List<dynamic> daftarSurat = [];
+  List<dynamic> _daftarSurat = [];
+
+  List<dynamic> get daftarSurat => _daftarSurat;
 
   @override
   void initState() {
@@ -24,7 +27,7 @@ class _BacaQuranPageState extends State<BacaQuranPage> {
         await rootBundle.loadString('assets/Quran.json'); // Bagian Json
     final data = await json.decode(response);
     setState(() {
-      daftarSurat = data;
+      _daftarSurat = data;
     });
   }
 
@@ -42,6 +45,14 @@ class _BacaQuranPageState extends State<BacaQuranPage> {
             onPressed: () {},
             icon: const Icon(Icons.more_vert),
           ),
+          IconButton(
+            onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => PencarianPage(daftarSurat: _daftarSurat),
+    ));
+  },
+  icon: const Icon(Icons.search),
+),
         ],
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(40),

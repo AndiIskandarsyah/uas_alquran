@@ -4,13 +4,15 @@ import 'screens/terakhir_baca.dart';
 import 'screens/pencarian.dart';
 import 'screens/jadwal_sholat.dart';
 import 'screens/pengaturan.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key});  
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +26,33 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class QuranHomePage extends StatelessWidget {
+class QuranHomePage extends StatefulWidget {
   const QuranHomePage({super.key});
 
   @override
+  State<QuranHomePage> createState() => _QuranHomePageState();
+}
+
+class _QuranHomePageState extends State<QuranHomePage> {
+  List<dynamic> daftarSurat = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSuratData();
+  }
+
+  Future<void> _loadSuratData() async {
+  final String response = await rootBundle.loadString('assets/Quran.json');
+  final data = json.decode(response);
+  setState(() {
+    daftarSurat = data;
+  });
+}
+
+
+  @override
   Widget build(BuildContext context) {
-    // Define the common button size
     double buttonWidth = 250;
     double buttonHeight = 50;
 
@@ -39,7 +62,7 @@ class QuranHomePage extends StatelessWidget {
           // Background Image
           Positioned.fill(
             child: Image.asset(
-              'assets/background.jpg', // Place your background image here
+              'assets/background.jpg', // Background image path
               fit: BoxFit.cover,
             ),
           ),
@@ -50,7 +73,7 @@ class QuranHomePage extends StatelessWidget {
               children: [
                 // Quran Icon with Text
                 Image.asset(
-                  'assets/quran.png', // Place your Qur'an image here
+                  'assets/quran.png', // Qur'an image path
                   height: 200,
                 ),
                 const SizedBox(height: 20),
@@ -62,7 +85,8 @@ class QuranHomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const BacaQuranPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const BacaQuranPage()),
                       );
                     },
                     child: const Text('BACA QUR\'AN'),
@@ -76,7 +100,8 @@ class QuranHomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const TerakhirBacaPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const TerakhirBacaPage()),
                       );
                     },
                     child: const Text('TERAKHIR BACA'),
@@ -90,7 +115,10 @@ class QuranHomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const PencarianPage()),
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              PencarianPage(daftarSurat: daftarSurat),
+                        ),
                       );
                     },
                     child: const Text('PENCARIAN'),
@@ -104,7 +132,8 @@ class QuranHomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const JadwalSholatPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const JadwalSholatPage()),
                       );
                     },
                     child: const Text('JADWAL SHOLAT'),
@@ -118,7 +147,8 @@ class QuranHomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const PengaturanPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const PengaturanPage()),
                       );
                     },
                     child: const Text('PENGATURAN'),
