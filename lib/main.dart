@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/baca_quran.dart';
 import 'screens/terakhir_baca.dart';
 import 'screens/pencarian.dart';
-import 'screens/jadwal_sholat.dart';
+import 'screens/jadwal_sholat.dart'; 
 import 'screens/pengaturan.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Quran App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -43,12 +44,12 @@ class _QuranHomePageState extends State<QuranHomePage> {
   }
 
   Future<void> _loadSuratData() async {
-  final String response = await rootBundle.loadString('assets/Quran.json');
-  final data = json.decode(response);
-  setState(() {
-    daftarSurat = data;
-  });
-}
+    final String response = await rootBundle.loadString('assets/Quran.json');
+    final data = json.decode(response);
+    setState(() {
+      daftarSurat = data;
+    });
+  }
 
 
   @override
@@ -86,7 +87,7 @@ class _QuranHomePageState extends State<QuranHomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const BacaQuranPage()),
+                          builder: (context) => const AudioListScreen()),
                       );
                     },
                     child: const Text('BACA QUR\'AN'),
@@ -101,7 +102,7 @@ class _QuranHomePageState extends State<QuranHomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const TerakhirBacaPage()),
+                          builder: (context) => const TerakhirBacaPage()),
                       );
                     },
                     child: const Text('TERAKHIR BACA'),
@@ -130,10 +131,10 @@ class _QuranHomePageState extends State<QuranHomePage> {
                   height: buttonHeight,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.push( 
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const JadwalSholatPage()),
+                          builder: (context) => DropdownPage()), // Menggunakan DropdownPage untuk Jadwal Sholat
                       );
                     },
                     child: const Text('JADWAL SHOLAT'),
@@ -148,7 +149,7 @@ class _QuranHomePageState extends State<QuranHomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const PengaturanPage()),
+                          builder: (context) => const PengaturanPage()),
                       );
                     },
                     child: const Text('PENGATURAN'),
