@@ -99,38 +99,6 @@ class _QuranHomePageState extends State<QuranHomePage> {
                   height: buttonHeight,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const TerakhirBacaPage()),
-                      );
-                    },
-                    child: const Text('TERAKHIR BACA'),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  width: buttonWidth,
-                  height: buttonHeight,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              PencarianPage(daftarSurat: daftarSurat),
-                        ),
-                      );
-                    },
-                    child: const Text('PENCARIAN'),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  width: buttonWidth,
-                  height: buttonHeight,
-                  child: ElevatedButton(
-                    onPressed: () {
                       Navigator.push( 
                         context,
                         MaterialPageRoute(
@@ -138,21 +106,6 @@ class _QuranHomePageState extends State<QuranHomePage> {
                       );
                     },
                     child: const Text('JADWAL SHOLAT'),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  width: buttonWidth,
-                  height: buttonHeight,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PengaturanPage()),
-                      );
-                    },
-                    child: const Text('PENGATURAN'),
                   ),
                 ),
               ],

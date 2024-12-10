@@ -39,6 +39,7 @@ dependencies:
   http: ^0.13.3
   just_audio: ^0.9.34
   html: ^0.15.0
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
