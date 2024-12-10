@@ -90,7 +90,7 @@ class _QuranHomePageState extends State<QuranHomePage> {
                           builder: (context) => const AudioListScreen()),
                       );
                     },
-                    child: const Text('BACA QUR\'AN'),
+                    child: const Text('BACA SURAH QUR\'AN'),
                   ),
                 ),
                 const SizedBox(height: 10),

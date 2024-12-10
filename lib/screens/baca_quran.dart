@@ -221,17 +221,31 @@ class AudioPlayerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isPlaying = currentlyPlayingUrl == audioUrl;
+
     return Card(
+      color: isPlaying ? Colors.green.shade100 : null, 
       margin: const EdgeInsets.all(8.0),
       child: ExpansionTile(
-        title: Text(title),
-        subtitle: Text('Arti: $arti (${tempatTurun})'),
+        title: Text(
+          title,
+          style: TextStyle(
+            color: isPlaying ? Colors.green.shade900 : null, 
+          ),
+        ),
+        subtitle: Text(
+          'Arti: $arti (${tempatTurun})',
+          style: TextStyle(
+            color: isPlaying ? Colors.green.shade700 : null, 
+          ),
+        ),
         trailing: IconButton(
           icon: Icon(
-            currentlyPlayingUrl == audioUrl ? Icons.pause : Icons.play_arrow,
+            isPlaying ? Icons.pause : Icons.play_arrow,
+            color: isPlaying ? Colors.green : null, 
           ),
           onPressed: () {
-            if (currentlyPlayingUrl == audioUrl) {
+            if (isPlaying) {
               globalAudioPlayer.pause();
               onPlayingChanged(null);
             } else {
